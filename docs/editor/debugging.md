@@ -4,7 +4,7 @@ Area: editor
 TOCTitle: Debugging
 ContentId: 4E9A74AA-D778-4D1C-B369-83763B3C340F
 PageTitle: Debugging in Visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: One of the great things in Visual Studio Code is debugging support.  Set breakpoints, step-in, inspect variables and more.
 ---
 
@@ -12,7 +12,7 @@ MetaDescription: One of the great things in Visual Studio Code is debugging supp
 
 One of the key features of Visual Studio Code is its great debugging support. VS Code's built-in debugger helps accelerate your edit, compile and debug loop.
 
-![Debugging](images/debugging/hero.png)
+![Debugging diagram](images/debugging/debugging_hero.png)
 
 ## Debugger Extensions
 
@@ -324,6 +324,10 @@ Debugging many other languages is supported by [VS Code extensions](https://mark
 In case you didn't already read the Node.js section, take a look at:
 
 * [Node.js](/docs/runtimes/nodejs.md) - End to end Node scenario with a sample application
+
+To see a tutorial on the basics of Node.js debugging, check out:
+
+* [Intro Video - Debugging](/docs/introvideos/debugging.md) - Introductory video showcasing the basics of debugging. 
 
 To learn about VS Code's task running support, go to:
 

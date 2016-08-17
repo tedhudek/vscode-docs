@@ -4,7 +4,7 @@ Area: extensionapi
 TOCTitle: Contribution Points
 ContentId: 2F27A240-8E36-4CC2-973C-9A1D8069F83F
 PageTitle: Visual Studio Code Extension Contribution Points - package.json
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: To extend Visual Studio Code, your extension (plug-in) declares which of the various contribution points it is using in its package.json extension manifest file.
 ---
 
@@ -14,6 +14,7 @@ This document covers the various contribution points that are defined in the [`p
 
 * [`configuration`](/docs/extensionAPI/extension-points.md#contributesconfiguration)
 * [`commands`](/docs/extensionAPI/extension-points.md#contributescommands)
+* [`menus`](/docs/extensionAPI/extension-points.md#contributesmenus)
 * [`keybindings`](/docs/extensionAPI/extension-points.md#contributeskeybindings)
 * [`languages`](/docs/extensionAPI/extension-points.md#contributeslanguages)
 * [`debuggers`](/docs/extensionAPI/extension-points.md#contributesdebuggers)
@@ -60,7 +61,7 @@ You can read these values from your extension using `vscode.workspace.getConfigu
 
 Contribute an entry consisting of a title and a command to invoke to the Command Palette (`kb(workbench.action.showCommands)`).
 
->**Note:** When a command is invoked (from a key binding or from the Command Palette), VS Code will emit an `activationEvent` `onCommand:${command}`.
+>**Note:** When a command is invoked (from a key binding or from the Command Palette), VS Code will emit an activationEvent `onCommand:${command}`.
 
 ### Example
 
@@ -77,6 +78,38 @@ Contribute an entry consisting of a title and a command to invoke to the Command
 
 ![commands extension point example](images/extension-points/commands.png)
 
+## `contributes.menus`
+
+Contribute a menu item for a command to the editor or Explorer. The menu item definition contains the command that should be invoked when selected and the condition under which the item should show. The later is defined with the `when` clause which uses the key bindings [when clause contexts](/docs/customization/keybindings.md#when-clause-contexts). In addition to the mandatory `command` property, an alternative command can be defined using the `alt`-property. It will be shown and invoked when pressing `kbstyle(Alt)` while hovering over a menu item. Last, a `group`-property defines sorting and grouping of menu items. The `navigation` group is special as it will always be sorted to the top/beginning of a menu.
+
+Currently extension writers can to contribute to:
+
+* The Explorer context menu - `explorer/context`
+* The editor context menu - `editor/context`
+* The editor title menu - `editor/title`
+
+>**Note:** When a command is invoked from a (context) menu, VS Code tries to infer the currently selected resource and passes that as a parameter when invoking the command. For instance, a menu item inside the Explorer is passed the URI of the selected resource and a menu item inside an editor is passed the URI of the document.
+
+In addition to a title, commands can also define icons which VS Code will show in the editor menu bar.
+
+### Example
+
+```json
+...
+"contributes": {
+	"menus": {
+		"editor/title": [{
+			"when": "resourceLangId == markdown",
+			"command": "markdown.showPreview",
+			"alt": "markdown.showPreviewToSide",
+			"group": "navigation"
+		}]
+	}
+}
+...
+```
+
+![menus extension point example](images/extension-points/menus.png)
 
 ## `contributes.keybindings`
 
@@ -118,9 +151,20 @@ VS Code uses three hints to determine the language a file will be associated wit
 2. the filename (`filenames` below)
 3. the first line inside the file (`firstLine` below)
 
-The last piece of information VS Code wants to know about a language is the `aliases` property, the first item in this list will be picked as the language label (as rendered in the status bar on the right).
-
 When a file is opened by the user, these three rules are applied and a language is determined. VS Code will then emit an activationEvent `onLanguage:${language}` (e.g. `onLanguage:python` for the example below)
+
+The `aliases` property contains human readable names under which the language is known. The first item in this list will be picked as the language label (as rendered in the status bar on the right).
+
+The `configuration` property specifies a path to the language configuration file. The path is relative to the extension folder, and is typically `./language-configuration.json`. The file uses the JSON format and can contain the following properties:
+
+* `comments` - Defines the comment symbols
+  * `blockComment` - The begin and end token used to mark a block comment. Used by the 'Toggle Block Comment' command.
+  * `lineComment` - The begin token used to mark a line comment. Used by the 'Add Line Comment' command.
+* `brackets` - Defines the bracket symbols that influence the indentation of code between the brackets. Used by the editor to determine or correct the new indentation level when entering a new line.
+* `autoClosingPairs` - Defines the open and close symbols for the auto-close functionality. When an open symbol is entered, the editor will insert the close symbol automatically. Auto closing pairs optionally take a `notIn` parameter to deactivate a pair inside strings or comments.
+* `surroundingPairs` - Defines the open and close pairs used to surround a selected string.
+
+If your language configuration file name is or ends with `language-configuration.json`, you will get validation and editing support in VS Code.
 
 ### Example
 
@@ -132,10 +176,40 @@ When a file is opened by the user, these three rules are applied and a language 
 		"extensions": [ ".py" ],
 		"aliases": [ "Python", "py" ],
 		"filenames": [ ... ],
-		"firstLine": "^#!/.*\\bpython[0-9.-]*\\b"
+		"firstLine": "^#!/.*\\bpython[0-9.-]*\\b",
+		"configuration": "./language-configuration.json"
 	}]
 }
 ```
+language-configuration.json
+```json
+{
+	"comments": {
+		"lineComment": "//",
+		"blockComment": [ "/*", "*/" ]
+	},
+	"brackets": [
+		["{", "}"],
+		["[", "]"],
+		["(", ")"]
+	],
+	"autoClosingPairs": [
+		["{", "}"],
+		["[", "]"],
+		["(", ")"],
+		{ "open": "'", "close": "'", "notIn": ["string", "comment"] },
+		{ "open": "/**", "close": " */", "notIn": ["string"] }
+	],
+	"surroundingPairs": [
+		["{", "}"],
+		["[", "]"],
+		["(", ")"],
+		["<", ">"],
+		["'", "'"]
+	]
+}
+```
+
 ## `contributes.debuggers`
 
 Contribute a 'debug adapter' to VS Code's debugger. A debug adapter integrates VS Code with a particular debug engine.

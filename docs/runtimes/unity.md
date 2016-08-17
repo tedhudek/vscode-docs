@@ -10,15 +10,13 @@ MetaDescription: Visual Studio Code can replace MonoDevelop as the editor for Un
 
 # Unity Development with VS Code
 
->**Important**: The Unity plug-in requires an earlier version of the OmniSharp C# extension. If you are using the preview [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp), please uninstall it and install the [Legacy C# Support](https://marketplace.visualstudio.com/items?itemName=ms-vscode.omnisharp) extension.
-
 Visual Studio Code can be a great companion to Unity for editing and debugging C# files.  All of the [C#](/docs/languages/csharp.md) features are supported and more.  In the screen below you can see code colorization, bracket matching, IntelliSense, CodeLens and that's just the start.
 
 ![Unity Example](images/unity/wow.gif)
 
 Read on to find out how to configure Unity and your project to get the best possible experience.
 
->**Note:** VS Code uses a more recent version of Mono than that included with Unity.  If you get OmniSharp errors, you may need to update your Mono version.  See this [FAQ topic](/Docs/supporting/FAQ.md#vs-code-fails-to-start-omnisharp-on-os-x) for additional details.
+>**Note:** VS Code uses a more recent version of Mono than that included with Unity. If you get OmniSharp errors, you may need to update your Mono version.  See this [FAQ topic](/docs/setup/osx#_common-questions) for additional details.
 
 ## Connecting Unity and VS Code
 
@@ -29,12 +27,6 @@ The easiest way to get going is to leverage a [Unity plug-in](https://github.com
 3. Scrubs the Unity project file to ensure that OmniSharp can work with it - to get the best editing experience
 4. Configures VS Code to ignore certain Unity file types - removing clutter from the VS Code file explorer
 5. Configures a `launch.json` file with the correct debug port - to enable debugging. However, installing the [Debugger for Unity](https://marketplace.visualstudio.com/items/Unity.unity-debug) is recommended to get debugging support.
-
-### Step 0: Install the Legacy C# Support extension
-
-The Unity plug-in requires an earlier version of the OmniSharp language service available with the [Legacy C# Support](https://marketplace.visualstudio.com/items?itemName=ms-vscode.omnisharp) extension.
-
-**Install:** From within Visual Studio Code, you can use **Quick Open** (`kb(workbench.action.quickOpen)`) and paste `ext install omnisharp` then press `kbstyle(Enter)`.
 
 ### Step 1: Download the plug-in code
 
@@ -166,7 +158,7 @@ Before|After
 ------|-----
 ![Unfiltered files](images/unity/unfilteredfiles.png)|![filtered files](images/unity/filteredfiles.png)
 
-**Q: VS Code did not go the correct position in my file.**
+**Q: VS Code did not go to the correct position in my file.**
 
 **A:** For OS X, make sure you have installed the Unity plug-in described above.  For Windows, ensure you have set the additional command line arguments when you launch VS Code from Unity.
 

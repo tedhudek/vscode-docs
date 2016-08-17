@@ -4,13 +4,15 @@ Area: languages
 TOCTitle: JSON
 ContentId: FB3B14D9-A59A-4968-ACFC-5FB5D4E9B70E
 PageTitle: JSON editing in Visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Edit JSON files in Visual Studio Code
 ---
 
 # JSON
 
 JSON is a data format that is common in configuration files like `package.json` or `project.json`. We also use it extensively in VS Code for our configuration files.  When opening a file that ends with `.json`, VS Code provides features out of the box to make it simpler to write or modify the file's content. 
+
+![JSON within VS Code](images/json/json_hero.png)
 
 ## JSON Comments
 
@@ -74,7 +76,7 @@ The following excerpt from the User Settings shows how `.babelrc` files are mapp
         "fileMatch": [
             "/.babelrc"
         ],
-        "url": "http://json.schemastore.org/babelrc
+        "url": "http://json.schemastore.org/babelrc"
     },
 ```
 

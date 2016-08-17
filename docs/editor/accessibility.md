@@ -1,10 +1,10 @@
 ---
-Order: 12
+Order: 13
 Area: editor
 TOCTitle: Accessibility
 ContentId: 62894B41-CC33-400A-8A56-8C761C77B4C7
 PageTitle: Accessibility in Visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Visual Studio Code user accessibility features.  Learn here about the various ways VS Code aids user accessibility.  
 ---
 
@@ -36,7 +36,7 @@ VS Code also has many preset keyboard shortcuts for commands. These are displaye
 
 ![Keyboard shortcuts in Command Palette](images/accessibility/keyboard-shortcuts.png)
 
-You can also set your own keyboard shortcuts. **File** > **Preferences** > **Keyboard Shortcuts** brings up the **Default Keyboard Shortcuts** in the left pane and your customizable `keybindings.json` on the right.  See [Key Bindings](/docs/customization/keybindings.com) for more details on customizing or adding your own keyboard shortcuts.
+You can also set your own keyboard shortcuts. **File** > **Preferences** > **Keyboard Shortcuts** brings up the **Default Keyboard Shortcuts** in the left pane and your customizable `keybindings.json` on the right.  See [Key Bindings](/docs/customization/keybindings.md) for more details on customizing or adding your own keyboard shortcuts.
 
 ## Tab Navigation
 
@@ -55,7 +55,9 @@ By default, pressing the `kbstyle(Tab)` within a source code file inserts the Ta
 
 ![tab moves focus](images/accessibility/tab-moves-focus.png)
 
-Read-only files never trap the `kbstyle(Tab)` key.
+You can also toggle `kbstyle(Tab)` trapping from the **Command Palette** (`kb(workbench.action.showCommands)`) with the **Toggle Use of Tab Key for Setting Focus** action.
+
+Read-only files never trap the `kbstyle(Tab)` key. The **Integrated Terminal** panel respects the `kbstyle(Tab)` trapping mode and can be toggled with `kbstyle(Ctrl+M)`.
 
 ## Screen Readers
 
@@ -80,9 +82,13 @@ VS Code has some known accessibility issues depending on the platform.
 
 ### Windows
 
-You can not use the keyboard (right, left arrow keys) to move between top-level menu items (**File**, **Edit**, **View**, etc).  This is due to Election shell issue [#2504](https://github.com/atom/electron/issues/2504).
+You can not use the keyboard (right, left arrow keys) to move between top-level menu items (**File**, **Edit**, **View**, etc).  This is due to Electron issue [#2504](https://github.com/atom/electron/issues/2504).
 
 ### OS X
+
+There is limited screen reader support for the editor with VoiceOver.
+
+### Linux
 
 There is no screen reader support for the editor.
 

@@ -4,7 +4,7 @@ Area: customization
 TOCTitle: Colorizer
 ContentId: 448E9027-3AD0-420D-9A58-D428D1B1067D
 PageTitle: Visual Studio Code Colorizers
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: How to add colorization and bracket matching to Visual Studio Code.  TextMate .tmLanguage files are supported.
 ---
 
@@ -16,9 +16,7 @@ VS Code includes support for [many languages](/docs/languages/overview.md) in th
 
 Many language colorizers have been uploaded to the VS Code [Extension Marketplace](/docs/editor/extension-gallery.md) by the community.  If you find one you want to use, simply install it and restart VS Code and the new language will be available.
 
-> **Tip:** To search for language support for a specific language, type the language name in the `Extension: Install Extension` dropdown to filter the available extensions.
-
-![filter go language](images/colorizer/filter-go.png)
+> **Tip:** To search for language support for a specific language, type the language name in the Extensions view (`kb(workbench.view.extensions)`) search box.
 
 You can also browse the [VS Code Marketplace](https://marketplace.visualstudio.com/vscode/Languages) site directly to find available colorizers and language support.
 

@@ -4,7 +4,7 @@ Area: editor
 TOCTitle: Editing Evolved
 ContentId: 8966BBFD-C66D-4283-9DCA-8CAC0179886E
 PageTitle: Editing Evolved
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Visual Studio Code is a first class editor - but it's also so much more with features such as IntelliSense and smart code navigation.
 ---
 
@@ -48,7 +48,7 @@ If you press `kbstyle(Ctrl)` and hover over a symbol, a preview of the declarati
 
 ![Ctrl Hover](images/editingevolved/ctrlhover.png)
 
-> **Tip:** You can jump to the definition with `kbstyle(Ctrl+Click)` or open the definition to the side with `kbstyle(Ctrl+Alt+Click)`. If you opened a new editor window, you can go back to the previous editor with `kb(workbench.action.focusLeftEditor)`.
+> **Tip:** You can jump to the definition with `kbstyle(Ctrl+Click)` or open the definition to the side with `kbstyle(Ctrl+Alt+Click)`. If you opened a new editor window, you can go back to the previous editor with `kb(workbench.action.focusPreviousGroup)`.
 
 ## Goto Symbol
 
@@ -68,9 +68,9 @@ We think there's nothing worse than a big context switch when all you want is to
 
 ![Find All References](images/editingevolved/references.png)
 
-> **Tip:** You can navigate between different references in the peeked editor and, if you need to, you can even make quick edits right there!
+You can navigate between different references in the peeked editor and make quick edits right there. Clicking on the peeked editor filename or double-clicking in the result list will open the reference in the outer editor.
 
-> **Tip:** Clicking on the peeked editor filename or double-clicking in the result list will open the reference in the outer editor.
+> **Tip:** Additionally, the peek window is closed if you press `kbstyle(Escape)` or double-click in the peek editor region. You can disable this behavior with the `editor.stablePeek` [setting](/docs/customization/userandworkspace.md).
 
 ## Bracket matching
 
@@ -100,11 +100,11 @@ Some languages support rename symbol across files. Simply press `kb(editor.actio
 
 Warnings or Errors can be generated either via [configured tasks](/docs/editor/tasks.md), by rich language services, or by linters, that constantly analyze your code in the background. Since we love bug-free code, warnings and errors show up in multiple places:
 
-* In the status line there is a summary of all errors and warnings counts.
-* You can click on the summary or press `kb(workbench.action.showErrorsWarnings)` to see a list of all current errors.
+* In the status bar, there is a summary of all errors and warnings counts.
+* You can click on the summary or press `kb(workbench.actions.view.problems)` to display the **PROBLEMS** panel with a list of all current errors.
 * If you open a file that has errors or warnings, they will be rendered inline with the text and in the overview ruler.
 
-![Show Errors and Warnings](images/editingevolved/errors.png)
+![errors in problems panel](images/editingevolved/errors.png)
 
 > **Tip:** To loop through errors or warnings in the current file, you can press `kb(editor.action.marker.next)` or `kb(editor.action.marker.prev)` which will show an inline zone detailing the problem and possible code actions (if available):
 
@@ -179,6 +179,7 @@ You can also use the following actions:
 
 Now that you know how the editor works, time to try a few other things...
 
+* [Intro Video - Code Editing] - Watch an introductory video on code editing features. 
 * [The Basics](/docs/editor/codebasics.md) - In case you missed a basic orientation around VS Code.
 * [Customization](/docs/customization/overview.md) - Configure VS Code the way you want - Themes, Settings, Display Language
 * [Key Bindings](/docs/customization/keybindings.md) - Learn how to modify key bindings to your preference.

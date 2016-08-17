@@ -4,7 +4,7 @@ Area: languages
 TOCTitle: TypeScript
 ContentId: 05C114DF-4FDC-4C65-8954-58F5F293FAFD
 PageTitle: TypeScript Programming with Visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Get the best out editing TypeScript with Visual Studio Code.
 ---
 
@@ -12,6 +12,8 @@ MetaDescription: Get the best out editing TypeScript with Visual Studio Code.
 
 TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
 It offers classes, modules, and interfaces to help you build robust components. A language specification can be found [here](https://github.com/Microsoft/TypeScript/tree/master/doc).
+
+![TypeScript language within VS Code](images/typescript/typescript_hero.png)
 
 VS Code's TypeScript support can operate in two different modes:
 
@@ -117,7 +119,7 @@ You can click on that icon to get a list of the problems and navigate to them.
 
 ![Compile Problems](images/typescript/compileerror.png)
 
-You can also use the keyboard to open the list `kb(workbench.action.showErrorsWarnings)`.
+You can also use the keyboard to open the list `kb(workbench.actions.view.problems)`.
 
 >**Tip:** Tasks offer rich support for many actions. Check the [Tasks](/docs/editor/tasks.md) topic for more information on how to configure them.
 

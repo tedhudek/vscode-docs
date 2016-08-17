@@ -4,7 +4,7 @@ Area: editor
 TOCTitle: Tasks
 ContentId: F5EA1A52-1EF2-4127-ABA6-6CEF5447C608
 PageTitle: Tasks in visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Expand your development workflow with task integration in Visual Studio Code (Gulp, Grunt, Jake and more).
 ---
 
@@ -12,7 +12,51 @@ MetaDescription: Expand your development workflow with task integration in Visua
 
 Lots of tools exist to automate tasks like building, packaging, testing or deploying software systems. Examples include [Make](https://en.wikipedia.org/wiki/Make_software), [Ant](http://ant.apache.org/), [Gulp](http://gulpjs.com/), [Jake](http://jakejs.com/), [Rake](http://rake.rubyforge.org/) and [MSBuild](https://github.com/Microsoft/msbuild).
 
-These tools are mostly run from the command line and automate jobs outside the inner software development loop (edit, compile, test and debug).  Given their importance in the development life-cycle, it is very helpful to be able run them and analyze their results from within VS Code. Please note that task support is only available when working on a workspace folder. It is not available when editing single files.
+![VS Code can talk to a variety of external tools](images/tasks/tasks_hero.png)
+
+These tools are mostly run from the command line and automate jobs outside the inner software development loop (edit, compile, test and debug).  Given their importance in the development life-cycle, it is very helpful to be able run them and analyze their results from within VS Code.
+
+>Please note that task support is only available when working on a workspace folder. It is not available when editing single files.
+
+## Hello World
+
+Let's start with a simple "Hello World" task which will display text to the **OUTPUT** panel when run.
+
+Tasks are defined in a workspace `tasks.json` file and VS Code has templates for common task runners. In the **Command Palette** (`kb(workbench.action.showCommands)`), you can filter on 'task' and can see the various Task related commands.
+
+![tasks in command palette](images/tasks/tasks-command-palette.png)
+
+Select the **Tasks: Configure Task Runner** command and you will see a list of task runner templates. Select **Others** to create a task which runs an external command.
+
+You should now see a `tasks.json` file in your workspace `.vscode` folder with the following content:
+
+```json
+{
+    "version": "0.1.0",
+    "command": "echo",
+    "isShellCommand": true,
+    "args": ["Hello World"],
+    "showOutput": "always"
+}
+```
+
+In this example, we are just running the `echo` shell command with "Hello World" as an argument.
+
+Test the `echo` task by running **Tasks: Run Tasks** and selecting `echo` from the dropdown. The **OUTPUT** panel will open and you'll see the text "Hello World".
+
+You can get IntelliSense on `tasks.json` variables and their values with hover and trigger smart completions with `kb(editor.action.triggerSuggest)`.
+
+![tasks IntelliSense](images/tasks/tasks-intellisense.png)
+
+>**Tip:** You can run your task through **Quick Open** (`kb(workbench.action.quickOpen)`) by typing 'task', `kbstyle(Space)` and the command name. In this case, 'task echo'.
+
+## Output Window Behavior
+
+Sometimes you will want to control how the output window behaves when running tasks. For instance, you may want to maximize editor space and only look at task output if you think there is a problem. The property **showOutput** controls this and the valid values are:
+
+- **always** - The output window is always brought to front. This is the default.
+- **never** - The user must explicitly bring the output window to the front using the **View** > **Toggle Output** command (`kb(workbench.action.output.toggleOutput)`).
+- **silent** - The output window is brought to front only if no [problem matchers](/docs/editor/tasks.md#processing-task-output-with-problem-matchers) are set for the task.
 
 ## Examples of Tasks in Action
 
@@ -139,14 +183,6 @@ The `tasks` property is defined as an array of object literals where each litera
 - **isBuildCommand** - If this property is set to true, `kb(workbench.action.tasks.build)` will trigger this task.
 - **problemMatcher** A string or array of strings based on the pre-defined problem matchers.
 
-## Output Window Behavior
-
-Sometimes you will want to control how the output window behaves when running tasks. For instance, you may always want to show output for the debug command. The property **showOutput** controls this and the valid values are:
-
-- **silent** - The output window is brought to front only if no problem matchers fire for the task. This is the default.
-- **always** - The output window is always brought to front.
-- **never** - The user must explicitly bring the output window to the front using the **View** > **Toggle Output** command (`kb(workbench.action.output.toggleOutput)`).
-
 ## Operating System Specific Properties
 
 The task system supports defining values (for example, the command to be executed) specific to an operating system. To do so, simply put an operating system specific literal into the `tasks.json` file and specify the corresponding properties inside that literal.
@@ -208,6 +244,7 @@ When authoring tasks and launch configurations, it is often useful to have a set
 
 - **${workspaceRoot}** the path of the folder opened in VS Code
 - **${file}** the current opened file
+- **${relativeFile}** the current opened file relative to `workspaceRoot`
 - **${fileBasename}** the current opened file's basename
 - **${fileDirname}** the current opened file's dirname
 - **${fileExtname}** the current opened file's extension
@@ -266,6 +303,7 @@ A matcher that captures the above warning (and errors) looks like:
     }
 }
 ```
+Please note that the file, line and message properties are mandatory.
 
 Here is a finished `tasks.json` file with the code above (comments removed) wrapped with the actual task details:
 
@@ -289,7 +327,7 @@ Here is a finished `tasks.json` file with the code above (comments removed) wrap
 }
 ```
 
-Running it inside VS Code and pressing `kb(workbench.action.showErrorsWarnings)` to get the list of problems gives you the following output:
+Running it inside VS Code and pressing `kb(workbench.actions.view.problems)` to get the list of problems gives you the following output:
 
 ![GCC Problem Matcher](images/tasks/problemmatcher.png)
 
@@ -387,7 +425,45 @@ Here is a problem matcher to fully capture ESLint stylish problems:
 
 That was tasks - let's keep going...
 
-* [tasks.json Schema](/docs/editor/tasks_appendix.md) - Still want more on tasks dig into the schema to see what else is possible
-* [Editing Evolved](/docs/editor/editingevolved.md) - Lint, IntelliSense, Lightbulbs, Peek and Goto Definition and more
-* [Language Support](/docs/languages/overview.md) - Our Good, Better, Best language grid to see what you can expect
-* [Debugging](/docs/editor/debugging.md) - This is where VS Code really shines
+* [tasks.json Schema](/docs/editor/tasks_appendix.md) - You can review the full `tasks.json` schema and descriptions.
+* [Editing Evolved](/docs/editor/editingevolved.md) - Lint, IntelliSense, Lightbulbs, Peek and Go to Definition and more.
+* [Language Support](/docs/languages/overview.md) - Learn about our supported programming languages, both shipped with VS Code and through community extensions.
+* [Debugging](/docs/editor/debugging.md) - Debug your source code directly in the VS Code editor.
+
+## Common Questions
+
+**Q: How can I define multiple tasks to run different commands?**
+
+**A:** Defining multiple tasks in `tasks.json` is not yet fully supported by VS Code (see [#981](https://github.com/Microsoft/vscode/issues/981)). You can work around this limitation by running your task commands through a shell command (`sh` on Linux and OS X, `cmd` on Windows).
+
+Here is an example to add two tasks for `make` and `ls`:
+
+```json
+{
+    "version": "0.1.0",
+    "command": "sh",
+    "args": ["-c"],
+    "isShellCommand": true,
+    "showOutput": "always",
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "make",
+            "args": ["make"]
+        },
+        {
+            "taskName": "ls",
+            "args": ["ls"]
+        }
+    ]
+}
+```
+
+Both tasks `make` and `ls` will be visible in the **Tasks: Run Task** dropdown.
+
+For Windows, you will need to pass the '/C' argument to `cmd` so that the tasks arguments are run.
+
+```json
+    "command": "cmd",
+    "args: ["/C"]
+```

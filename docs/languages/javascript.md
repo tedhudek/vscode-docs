@@ -4,7 +4,7 @@ Area: languages
 TOCTitle: JavaScript
 ContentId: F54BB3D4-76FB-4547-A9D0-F725CEBB905C
 PageTitle: JavaScript Programming with Visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Get the best out of Visual Studio Code for JavaScript development
 ---
 
@@ -13,6 +13,8 @@ MetaDescription: Get the best out of Visual Studio Code for JavaScript developme
 ## Rich Editing Support
 
 Visual Studio Code uses the TypeScript language service to make authoring JavaScript easy. In addition to syntactical features like format, format on type and outlining, you also get language service features such as **Peek**, **Go to Definition**, **Find all References**, and **Rename Symbol**.
+
+![JavaScript language within VS Code](images/javascript/javascript_hero.png)
 
 ## JavaScript Projects (jsconfig.json)
 
@@ -293,6 +295,11 @@ VS Code provides excellent support for JavaScript out of the box. Additionally, 
 Read on to find out about:
 
 * [TypeScript](typescript) - VS Code has great support for TypeScript which brings structure and strong typing to your JavaScript code, without compromising the good parts.
+
+Watch these introductory videos:
+
+* [IntelliSense](/docs/introvideos/intellisense.md) - Tutorial on IntelliSense with JavaScript.
+* [Debugging](/docs/introvideos/debugging.md) - Learn how to debug a Node.js application.
 
 ## Common Questions
 

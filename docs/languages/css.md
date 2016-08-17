@@ -4,7 +4,7 @@ Area: languages
 TOCTitle: CSS, Sass and Less
 ContentId: 039882CB-B5C4-46BD-A8D5-DB24A5E82706
 PageTitle: CSS, Sass and Less support in VS Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Find out how Visual Studio Code can support your CSS, Sass and Less development.
 ---
 
@@ -59,7 +59,7 @@ Hovering over a selector or property will provide an HTML snippet that is matche
 
 ## Goto Declaration and Find References
 
-This is supported for Sass and Less variables in the same file.
+This is supported for Sass and Less variables in the same file. [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables) per the [draft standards proposal](https://drafts.csswg.org/css-variables/) are also supported.
 
 >**Note:** Cross file references ('imports') are not resolved.
 
@@ -136,6 +136,8 @@ VS Code interprets `node-sass` or `lessc` as an external task runner exposing ex
 ### Step 4: Run the Build Task
 
 As this is the only task in the file, you can execute it by simply pressing `kb(workbench.action.tasks.build)` (**Run Build Task**).  The sample Sass/Less file should not have any compile problems, so by running the task all that happens is a corresponding `styles.css` file is created.
+
+>**Note:** If your build fails or you see an error message such as "An output directory must be specified when compiling a directory", be sure the filenames in your `tasks.json` match the filenames on disk. You can always test your build by running `node-sass styles.scss styles.css` from the command line.
 
 ## Automating Sass/Less compilation
 
@@ -242,9 +244,12 @@ Id|Description|Default
 ---|------------|----
 css.validate | Enables or disables all css validations | true
 less.validate | Enables or disables all less validations | true
-sass.validate | Enables or disables all sass validations | true
+scss.validate | Enables or disables all scss validations | true
 
-To configure an option for CSS, use `css.lint.` as the prefix to the id; for Sass and Less, use `less.lint.` and `sass.lint.`.
+To configure an option for CSS, use `css.lint.` as the prefix to the id; for Sass and Less, use `less.lint.` and `scss.lint.`.
+
+>**Note:** In VSCode 1.2 (May 2016) and earlier the Sass settings were prefixed with `sass`. If you have customized settings, rename the prefix from `sass` to `scss` to have
+them working again.
 
 Set a setting to `warning` or `error` if you want to enable lint checking, use `ignore` to disable it. Lint checks are performed as you type.
 
@@ -286,4 +291,4 @@ Read on to find out about:
 
 **Q: Do you support the indentation based Sass syntax (.sass) ?**
 
-**A:** No, not yet.
+**A:** No, but there are several extensions in the Marketplace supporting the indented flavor of Sass.

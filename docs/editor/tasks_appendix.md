@@ -2,7 +2,7 @@
 TOCTitle: Tasks Appendix
 ContentId: 6DCA48F5-0566-4AEB-9C4C-CCBBA2945347
 PageTitle: Tasks Appendix
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Additional info for using task runners in Visual Studio Code.
 ---
 
@@ -243,9 +243,8 @@ export interface ProblemPattern {
 
 	/**
 	 * The match group index of the filename.
-	 * If omitted 1 is used.
 	 */
-	file?: number;
+	file: number;
 
 	/**
 	 * The match group index of the problems's location. Valid location
@@ -256,15 +255,12 @@ export interface ProblemPattern {
 
 	/**
 	 * The match group index of the problem's line in the source file.
-	 *
-	 * Defaults to 2.
+	 * Can only be omitted if location is specified.
 	 */
 	line?: number;
 
 	/**
 	 * The match group index of the problem's column in the source file.
-	 *
-	 * Defaults to 3.
 	 */
 	column?: number;
 
@@ -298,10 +294,9 @@ export interface ProblemPattern {
 	code?: number;
 
 	/**
-	 * The match group index of the message. If omitted it defaults
-	 * to 4 if location is specified. Otherwise it defaults to 5.
+	 * The match group index of the message. Defaults to 0.
 	 */
-	message?: number;
+	message: number;
 
 	/**
 	 * Specifies if the last pattern in a multi line problem matcher should

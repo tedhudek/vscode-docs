@@ -4,7 +4,7 @@ Area: extensions
 TOCTitle: Overview
 ContentId: AD26EFB1-FFC6-4284-BAB8-F3BCB8294728
 PageTitle: Extending Visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Visual Studio Code has a rich extensibility model for interacting with and adding to the tool.  Learn how to create your own extensions (plug-ins) for Visual Studio Code.
 ---
 
@@ -31,7 +31,7 @@ Extensions include support for:
 
 * **Activation** - load an extension when a specific file type is detected, when a specific file exists, or when a command is selected via the Command Palette or a key combination
 * **Editor** - work with the editor's content - read and manipulate text, leverage selection(s)
-* **Workspace** - access working files, the status bar, information messages and more
+* **Workspace** - access open editors, the status bar, information messages and more
 * **Eventing** - connect to the editor life-cycle events such as: open, close, change, and more
 * **Evolved editing** - create providers for rich language support including IntelliSense, Peek, Hover, Diagnostics and much, much more
 

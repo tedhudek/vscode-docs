@@ -4,7 +4,7 @@ Area: editor
 TOCTitle: Extension Marketplace
 ContentId: 319916C4-93F2-471F-B448-FD416736C40C
 PageTitle: Managing Extensions in Visual Studio Code
-DateApproved: 6/6/2016
+DateApproved: 8/4/2016
 MetaDescription: Find out how to discover, add, update, disable and uninstall Visual Studio Code extensions (plug-ins) through the Extension Marketplace.
 ---
 
@@ -16,41 +16,50 @@ The features that VS Code includes out-of-the-box are just the start. VS Code ex
 
 ## Browse and Install Extensions in VS Code
 
-You can browse and install extensions from within VS Code. Press `kb(workbench.action.showCommands)` and narrow down the list commands by typing `extension`:
+You can browse and install extensions from within VS Code. Bring up the Extension view by clicking on the Extensions icon in the View Bar on the side of VS Code.
 
-![Extension Commands](images/extension-gallery/f1extensions.png)
+![Extension View icon](images/extension-gallery/extensions-view-icon.png)
 
-Pick `Extensions: Install Extension`.
+This will show you a list of the most popular VS Code extensions on the [VS Code Marketplace](https://marketplace.visualstudio.com/VSCode).
 
-> **Tip:** As an alternative, press `kb(workbench.action.quickOpen)` (**Quick Open**) and type `ext install ` with a trailing space. Not sure what to install? Visit [VS Code Marketplace](https://marketplace.visualstudio.com/VSCode).
+![popular extensions](images/extension-gallery/extensions-popular.png)
 
-![ext install shortcut](images/extension-gallery/ext-install.png)
-
-You'll see a list of extensions on the Marketplace along with the publisher, published date and a brief description.  You can click the `README` button to go to the extension's [VS Code Marketplace](https://marketplace.visualstudio.com/VSCode) page where you can learn more.
+Each extension in the list includes a brief description, the publisher, the download count and a five star rating. You can click on the extension item to display the extension's [VS Code Marketplace](https://marketplace.visualstudio.com/VSCode) page where you can learn more.
 
 >**Note:** If your computer's Internet access goes through a proxy server, you will need to configure the proxy server. See [Proxy Server Support](/docs/setup/setup-overview.md#proxy-server-support) for details.
 
+By clicking on the view's `...` **More** button, it is possible to show:
+
+* The list of currently installed extensions
+* The list of outdated extensions that can be updated
+* The list of recommended extensions based on your workspace
+* The list of globally popular extensions
+
 ## Install an Extension
 
-Simply pick the extension from the list. After a successful install, you'll get the following notification:
+Simply click the **Install** button and after a successful install, you'll see an **Enable** button which will prompt you to restart VS Code to enable the new extension.
 
-![extension installed](images/extension-gallery/installed.png)
+## Search for an Extension
+
+You can clear the Search box at the top of the Extensions View and type in the name of the extension, tool or programming language you're looking for. 
+
+For example, typing 'python' will bring up a list of Python language extensions:
+
+![python extensions](images/extension-gallery/extensions-python.png)
+
+You can see a list of recommended extensions (based on your workspace file types), using **Show Recommended Extensions** which sets the '@recommended' filter.
 
 ## List Installed Extensions
 
-You can also browse installed extensions with the `Extensions: Show Installed Extensions` command or by typing `kb(workbench.action.quickOpen)` (**Quick Open**) and `ext ` with a trailing space.
-
-![installed extensions](images/extension-gallery/installed-extensions.png)
+**Show Installed Extensions** will clear the search box and shows the list of installed extensions.
 
 ## Uninstall an Extension
 
-To uninstall an extension, bring up the `Extensions: Show Installed Extensions` dropdown and click the `x` button in the lower right of the extension entry. This will uninstall the extension and prompt you to restart VS Code.
+To uninstall an extension, click the **Uninstall** button. This will uninstall the extension and prompt you to restart VS Code.
 
 ## Update an Extension
 
-You can quickly look for extension updates by using the `Extensions: Show Outdated Extensions` dropdown.  This will display any available updates for your currently installed extensions. Simply click the Update Extension button in the lower right for the outdated extension and the update will be installed and you'll be prompted to restart VS Code.
-
-> **Tip:** Code will also notify you of available updates in the extension icon at the bottom left corner of its window.
+You can quickly look for extension updates by using the **Show Outdated Extensions** command which uses the '@outdated' filter.  This will display any available updates for your currently installed extensions. Simply click the **Update** button for the outdated extension and the update will be installed and you'll be prompted to restart VS Code.
 
 ## Browse Extensions
 
@@ -86,9 +95,23 @@ Here are a few topics you may find interesting...
 
 ## Common Questions
 
-**Q: The `Extensions: Install Extension` command just hangs and never shows a dropdown listing available extensions?**
+**Q: Can I download an extension directly from the Marketplace?**
 
-**A:** This could be due to an incomplete uninstall of an extension which left some extension files under [your `.vscode/extensions` folder](/docs/extensions/install-extension.md#your-extensions-folder).  Navigate to `.vscode/extensions` and see if there is an extension folder (named for the publisher and extension as `publisher.extension`) for a recently deleted extension.  Delete that folder and restart VS Code.
+**A:** Some users prefer to download an extension once from the Marketplace and then install it multiple times from a local share. This is useful when there are connectivity concerns or if your development team wants to use a fixed set of extensions.
+
+An extension's direct download URL is in the form: 
+
+```
+https://${publisher}.gallery.vsassets.io/_apis/public/gallery/publisher/${publisher}/extension/${extension name}/${version}/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
+```
+
+For example, the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) version `0.10.18` would be:
+
+```
+https://dbaeumer.gallery.vsassets.io/_apis/public/gallery/publisher/dbaeumer/extension/vscode-eslint/0.10.18/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage
+```
+
+Once you've downloaded an extension, you can side load it by renaming the `.zip` filename extension to `.vsix` and then opening the `.vsix` file directly in VS Code (**File** > **Open File...**).  See [Installing Extensions](/docs/extensions/install-extension.md#install-a-packaged-extension-vsix) for more details.
 
 **Q: Can VS Code read TextMate bundles directly?**
 
